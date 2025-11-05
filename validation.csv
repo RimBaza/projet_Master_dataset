@@ -1,0 +1,610 @@
+Text,commande
+"Add executable permission to ""pretty-print""",chmod +x pretty-print
+"Add executable permission to ""rr.sh""",chmod +x rr.sh
+"add read,write permissions to all the files in the current folder which have the permission 600",find . -perm 600 -print | xargs chmod 666
+"Answer ""n"" to any prompts in the interactive recursive removal of ""dir1"", ""dir2"", and ""dir3""",yes n | rm -ir dir1 dir2 dir3
+"Answer ""y"" to all ""Are you sure?"" prompts from command ""cp * /tmp""",yes | cp * /tmp
+Append the current date to variable 'LBUFFER',"LBUFFER+=""$(date)"""
+Append the last modification time of file $arg as the seconds since epoch with a preceding space to the variable 'KEY',"KEY+=`date -r ""$arg"" +\ %s`"
+"Archive ""/path/to/sfolder"" to ""name@remote.server:/path/to/remote/dfolder"" compressing the data during transmission",rsync -avlzp /path/to/sfolder name@remote.server:/path/to/remote/dfolder
+"Archive ""_vimrc"" to ""~/.vimrc"" suppressing non-error messages and compressing data during transmission",rsync -aqz _vimrc ~/.vimrc
+"Archive ""src/bar"" on host ""foo"" to local directory ""/data/tmp""",rsync -avz foo:src/bar /data/tmp
+"Archive directory ""tata"" to directory ""tata2"", compressing data during copy.",rsync -avz tata/ tata2/
+Backup all PHP files under the current directory tree,"find -name ""*.php"" –exec cp {} {}.bak \;"
+"bind word ""pwd\n"" to key code ""\e[24~""","bind '""\e[24~"":""pwd\n""'"
+Brings down network interface eth0.,ifconfig eth0 down
+"Calculate the md5 sum of all files in ""/your/dir"" including content and filenames",grep -ar -e . /your/dir | md5sum | cut -c-32
+"Change every directory under ""/var/www/html/"" to have permissions 775",sudo find /var/www/html/ -type d -exec chmod 775 {} \;
+"Change every file under ""/var/www/html/"" to have permissions 664",sudo find /var/www/html/ -type f -exec chmod 664 {} \;
+Changes group ownership of 'myprogram' to ${USER} (the current user),"chgrp ""${USER}"" myprogram"
+"Change owner to ""$user"" and group to ""$group"" of ""$file""","chown -- ""$user:$group"" ""$file"""
+"Change owner to ""bob"" and group to ""sftponly"" of ""/home/bob/writable""",sudo chown bob:sftponly /home/bob/writable
+Change the ownership of all files in the current directory tree from root to www-data,find -user root -exec chown www-data {} \;
+change the ownership of all regular/normal files in the current directory after users confirmation,find . -type f -ok chown username {} \;
+"change the permissions of all the directories in the current folder, print0 is used for handling files with newlines in their file name",find . -type d -print0 | xargs -0 chmod 2775
+"Change permissions of all files ending in "".php"" under the current directory to 755 and print a '+' for each file",find . -name '*.php' -exec chmod 755 {} \; -exec echo '+' \;
+Change permissions to 777 for all directories in the current directory tree,find . -type d -exec chmod 777 {} \;
+"Check if ""$file"" contains DOS line endings",od -t x2 -N 1000 $file | cut -c8- | egrep -m1 -q ' 0d| 0d|0d$'
+Check if current system is running in 64-bit addressing.,uname -m | grep '64'
+"concatenates file1.txt, file2.txt, and file3.txt with the filenames printed at the beginning of file contents",head -n99999999 file1.txt file2.txt file3.txt
+"Connect to host ""remotehost"" as ssh user ""user"" to copy remote file ""/location/KMST_DataFile_*.kms"" to current directory on local host.",scp -v user@remotehost:/location/KMST_DataFile_*.kms
+Connect to host 'hostname' as user 'username' by forcing host key confirmation,ssh -o UserKnownHostsFile=/dev/null username@hostname
+"Connect via ssh to ""your.server.example.com"" and recursively copy directory ""/path/to/foo"" on this host to direcotry ""/home/user/Desktop"" on local host, using ""blowfish"" cipher algorithm.",scp -c blowfish -r user@your.server.example.com:/path/to/foo /home/user/Desktop/
+"Continuously answer ""y"" to any prompt from ""mv ...""",yes | mv ...
+convert epoch second timestamp to date,date -d @1278999698 +'%Y-%m-%d %H:%M:%S'
+"Convert the first 16 characters in ""/dev/random"" to a single hexadecimal value",head /dev/random -c16 | od -tx1 -w16 | head -n1 | cut -d' ' -f2- | tr -d ' '
+"Copy ""src/prog.js"" and ""images/icon.jpg"" to ""/tmp/package/"" keeping relative path names",rsync -Rv src/prog.js images/icon.jpg /tmp/package/
+"Copies '[MacVim_source_folder]/src/MacVim/mvim' to the '/usr/local/bin', printing info message on each operation.",cp -v [MacVim_source_folder]/src/MacVim/mvim /usr/local/bin
+"Copy all "".xml"" files in the current directory tree to ""/new/parent/dir"" preserving the directory hierarchy",find . -name \*.xml -print0 | cpio -pamvd0 /new/parent/dir
+"Copy all directories recursively from ""source/"" to ""destination/"" excluding all files",rsync -a --include='*/' --exclude='*' source/ destination/
+"Copy all directories recursively from ""source/"" to ""destination/"" excluding all files","rsync -a -f""+ */"" -f""- *"" source/ destination/"
+"Copy all files in ""/mail"" to ""/home/username"" preserving the directory hierarchy and modification times",find /mail -type f | cpio -pvdmB /home/username
+Copies defined file to the target folder without overwriting existing files.,cp -n
+"Copy the executable ""python2.7"" in $PATH to ""myenv/bin/python""",cp `which python2.7` myenv/bin/python
+"Copy file linked to by ""bar.pdf"" to ""bar.pdf""",cp --remove-destination `readlink bar.pdf` bar.pdf
+"Copy file linked to by ""file"" to ""file""",cp --remove-destination `readlink file` file
+Count all directories under current directory,find . -type d -exec ls -dlrt {} \; | wc --lines
+Count files in the current path by modification month,find . -maxdepth 1 -type f -printf '%TY-%Tm\n' | sort | uniq -c
+Count line numbers on files and record each count along with individual file name.,find /home/my_dir -name '*.txt' | xargs grep -c ^.*
+count lines of C or C++ or Obj-C or Java code under the current directory,"find . \( -name ""*.c"" -or -name ""*.cpp"" -or -name ""*.h"" -or -name ""*.m"" -or -name '*.java' \) -print0 | xargs -0 wc"
+Counts non-blank lines (lines with spaces are considered blank) in all *.py files in a current folder.,grep -v '^\s*$' *.py | wc
+"Count the number of differing lines in ""file1"" and ""file2"" with 0 lines of unified context",diff -U 0 file1 file2 | grep -v ^@ | wc -l
+"Count the number of equal lines in ""file1.txt"" and ""file2.txt""",comm -12 <(sort file1.txt) <(sort file2.txt) | wc -l
+Count the number of files named 'job.history' under '/data/SpoolIn' directory tree that match 'FAIL' in their contents,find /data/SpoolIn -name job.history -exec grep -l FAIL {} \+ | wc -l
+Count the number of files named 'job.history' under '/data/SpoolIn' directory tree that match 'FAIL' in their contents,find /data/SpoolIn -name job.history -exec grep -l FAIL {} \; | wc -l
+Count the number of files named 'job.history' under '/data/SpoolIn' directory tree that match 'FAIL' in their contents,find /data/SpoolIn -name job.history | xargs grep -l FAIL | wc -l
+create a gzip of all the files in the current folder excluding the already gzipped files,gzip `find . \! -name '*.gz' -print`
+create a gzip of all the files in the current folder excluding the already gzipped files.,"find . \! -name ""*.gz"" -exec gzip {} \;"
+"Create a symbolic link in the current directory for each hidden file or directory in ""git-stuff/home/"" excluding ""."" and ""..""",ln -s git-stuff/home/.[!.]* .
+"Create a symbolic link named ""foo"" to ""/var/cache/apt/archives/bash_4.3-14ubuntu1_amd64.deb""",ln -s /var/cache/apt/archives/bash_4.3-14ubuntu1_amd64.deb foo
+"Create a symbolc link named ""latest"" to the last modified file or directory in ""target-directory""",ln -s target-directory/`ls -rt target-directory | tail -n1` latest
+"create a symbolic link named ""test"" to file "".bashrc""",ln -s .bashrc test
+"Create an empty file in each directory named ""mydir"" under current directory.","find . -type d -name ""mydir"" -exec touch '{}/abc.txt' \;"
+create backup of all the text files present in the current folder,"find -name ""*.txt"" cp {} {}.bkup \;"
+"Create hard links of all files and directories matching ""test/icecream/cupcake/*"" or ""test/mtndew/livewire/*"" in ""test-keep"" preserving directory hierarchy",find test -path 'test/icecream/cupcake/*' -o -path 'test/mtndew/livewire/*' | cpio -padluv test-keep
+Create intermediate directories as required directory{1..3} and subdirectory{1..3} and directories subsubdirectory1 and subsubdirectory2,mkdir -p directory{1..3}/subdirectory{1..3}/subsubdirectory{1..2}
+Create new crontab set for user 'test' including $job and only jobs from current crontab of 'test' user that don`t contain $command,"cat <(fgrep -i -v ""$command"" <(crontab -u test -l)) <(echo ""$job"") | crontab -u test -"
+Create symlinks to all /home/folder1/*.txt files and 'folder1_' directory with the same name in a target directory named '+',"find /home/folder1/*.txt -type f -exec ln -s {} ""folder1_"" +\;"
+Creates temporary file and saves path to it in 'fif2' variable.,fif2=$(mktemp -u)
+"Creates temporary file, replacing XXXXXXXXXXXXXXXXXXXXXXX with equal length suffix.",mktemp /tmp/banana.XXXXXXXXXXXXXXXXXXXXXXX.mp3
+"Creates temporary file with file name formatted like /tmp/gnuplot_cmd_$(basename ""${0}"").XXXXXX.gnuplot and saves path to it in a variable 'gnuplotscript'.","gnuplotscript=$(mktemp /tmp/gnuplot_cmd_$(basename ""${0}"").XXXXXX.gnuplot)"
+"Creates temporary folder in a $temp_dir folder with name pattern defined by $template, and stores path to created folder in 'my_temp' variable.",$ my_temp_dir=$(mktemp -d --tmpdir=$temp_dir -t $template)
+"Cuts off last two parts from the path $dir, and deletes resulted folder if empty.","rmdir ""$(dirname $(dirname $dir))"""
+Decompress and extract 'libxml2-sources-2.7.7.tar.gz',gzip -dc libxml2-sources-2.7.7.tar.gz | tar xvf -
+"delete all the "".doc"" files in the current folder","find . -name '*.doc' -exec rm ""{}"" \;"
+"delete all the ""wmv"" ""wma"" files in the currnet folder,",find . \( -name '*.wmv' -o -name '*.wma' \) -exec rm {} \;
+Delete all *.zip files under current directory that are older than 2 days,"find . -name ""*.zip"" -mtime +2 -print0 | xargs -0 -I {} rm {}"
+Delete all *.zip files under current directory that are older than 2 days,"find . -name ""*.zip"" -mtime +2 orint0 | xargs -0 rm"
+Delete all directories in the /myDir directory tree,find /myDir -type d -delete
+Delete all empty directories in minimum 2 levels down the root directory,find root -mindepth 2 -type d -empty -delete
+Delete all files/directories taken by the glob pattern * except the ones with the name 'b',find * -maxdepth 0 -name 'b' -prune -o -exec rm -rf '{}' ';'
+Delete all files/directories taken by the glob pattern * except the ones with the name 'b',find * -maxdepth 0 -name 'b' -prune -o -exec rm -rf {} \;
+"Delete all files in the ""${S}/bundled-libs"" folder except ""libbass.so""","find ""${S}/bundled-libs"" \! -name 'libbass.so' -delete"
+Delete all files in the /myDir directory tree that were last modfied 7 days ago,find /myDir -mindepth 1 -mtime 7 -delete
+Delete all files in the /myDir directory tree that were last modfied 7 days ago,find /myDir -mindepth 1 -mtime 7 -exec rm -rf {} \;
+Delete all files in the /myDir directory tree that were last modified 7 days ago,find /myDir -mtime 7 -exec rm -rf {} \;
+Delete all files under $INTRANETDESTINATION/monthly directory tree that were modified more than 366 days ago,find $INTRANETDESTINATION/monthly -mtime +366 -exec rm {} \;
+Delete all hidden files/directories under $some_directory,"find ""$some_directory"" -name '.*' ! -name '.' ! -name '..' -delete"
+delete all the regular files in the temp folder which have not been modified in the last 24 hours + at the end gives bulk input to the rm command,find /tmp/ -type f -mtime +1 -exec rm {} +
+Delete all regular files with '.txt' extension that were modified in more than 25 minutes ago in maximum 1 level down the directory '/home/u20806/public_html',"find /home/u20806/public_html -daystart -maxdepth 1 -mmin +25 -type f -name ""*.txt"" \ -exec rm -f {} \;"
+Delete all regular files with '.txt' extension that were modified in more than 25 minutes ago in maximum 1 level down the directory '/home/u20806/public_html',"find /home/u20806/public_html -maxdepth 1 -mmin +25 -type f -name ""*.txt"" -delete"
+"delete all the text files starting with the name ""oldStuff"" in the file system","find / -name ""oldStuff*.txt"" -delete"
+delete all the tmp files ( files with the extension tmp ) in the /tmp folder. Print0 is used to display all those files which have newline in their names or files whose name is only spaces.,"find /tmp -name ""*.tmp"" -print0 | xargs -0 rm find /tmp -name ""*.tmp"" -print0 | xargs -0 rm"
+"Delete current cron job list, and use those in yourFile.text",crontab yourFile.text
+"Determine if user ""$USER"" is logged in",who | grep $USER
+Display a list of files with sizes in decreasing order of size of all the regular files under $dir directory tree that are bigger than $size in size,find $dir -type -f size +$size -print0 | xargs -0 ls -1hsS
+"display a long list of all the directories which have files ending with "".todo""","find ""$STORAGEFOLDER"" -name .todo -printf '%h\n' | uniq | xargs ls -l"
+"display a long list of all the directories which have files ending with "".todo""","find ""$STORAGEFOLDER"" -name .todo -printf '%h\n' | xargs ls -l"
+"Display a long list of all the files/directories named "".todo"" under $STORAGEFOLDER directory tree",find $STORAGEFOLDER -name .todo -exec ls -l {} \;
+display a long listing of all the files in the current directory,find . -name * -exec ls -a {} \;
+display a long listing of all the files in the current folder which have been modified in the last 24 hours,find . -mtime -1 -ls
+display a long listing of all the files in the current folder which have been modified in the last 24 hours,find . -mtime -1 | xargs ls -ld
+display all the directories in the folder /var and do not go beyond 2 levels during search,find /var -maxdepth 2 -type d;
+"display all the doc files in the current folder ( files ending with "".doc"" )",find . -name '*.doc'
+display all the files ending with .c in the current folder,find . -name \*.c -print0
+"display all the files in the current directory excluding the paths ""targert"", ""tools"", ""git""","find . \( ! -path ""*target*"" -a ! -path ""*tools*"" -a ! -path ""*.git*"" -print \)"
+display all files in the current folder ($@ contains the variables passed as argument to the function),"find . -iname ""*$@*"" -or -iname "".*$@*"""
+display all the files in the current folder,find . | xargs echo
+display all the files in the current folder along with the hidden files with the depth,"find . — name ""*"" — print -о -name "".*"" — print -depth"
+display all files in current folder and follow the symbolic links and display the pointed file,find -L .
+display all files in the current folder expect text files,"find . -name ""*.txt"" -prune -o -print"
+display all the files in the current folder for the files which have not been accessed in the last 24 hours,find . -type f -atime +1
+display all the files in the current folder that have been modified in the last 24 hours,find -mtime -1
+display all the files in the file system which belong to the group lighttpd,find / -group lighttpd -print
+display all the files in the file system which belong to the user with the id 1005,find / -uid 1005
+"display all the files in the folder ""/Users/Me/Desktop"" which have read permission to them",find /Users/Me/Desktop -readable
+"display all the files in the home folder which belong to the suer ""bruno"" and end with "".sxw"" and have been accessed in the last 3*24 hours",find /home -type f -name *.sxw -atime -3 -user bruno
+display all files which have been modified between two dates in current folder,"find . -type f -newermt ""2014-01-01"" ! -newermt ""2014-06-01"""
+display all jpg files in the current folder,"find -iname ""*.jpg"""
+(Linux-specific) Display all lines containing UTRACE in the current kernel's compile-time config file.,grep UTRACE /boot/config-$(uname -r)
+"display all the regular files in the current folder excluding those that are present in the path ""git""","find . -path ""*.git"" -prune -o -type f -print"
+"display all the regular files in the current folder excluding those that are present in the path ""git""","find . -path ""*.git*"" -prune -o -type f -print"
+display all regular/normal files in the current folder that were accessed exactly 7*24 hours back,find . -type f -atime 7
+display all the regular/normal files in the current folder which have been modified in the last 24 hours,find . -mtime 0 -type f
+"display all the regular files in the folder ""$(FOLDER)"" which are modified in the last $(RETENTION)*24 hours and excluding hidden files","find ${FOLDER} -type f ! -name \"".*\"" -mtime -${RETENTION}"
+display all symbolic links in current folder,"find . -lname ""*"""
+display all text files in a folder,"find $target -type f -iname ""*.txt"""
+display all the text files in a folder,find $1 -type f -name '*'$n'.txt'
+display the amount of disk space used by all the log files in the folder /usr/local/apache/logs/,"find /usr/local/apache/logs/ -type f -name ""*_log""|xargs du -csh"
+"display the base name(name without extension) of all the "".NEF"" files in the current folder","find . -name ""*.NEF"" -exec basename \{\} .NEF \;"
+"Display the differences between ""file1.cf"" and ""file2.cf"" side-by-side with a width of 150 characters",diff -y -W 150 file1.cf file2.cf
+Display the host's ECDSA fingerprint using the md5 hasing algorithm.,ssh-keygen -l -E md5 -f /etc/ssh/ssh_host_ecdsa_key.pub
+Display human-readable file type description of utf8.txt,file utf8.txt
+"Display kernel name, release, and version.",uname -s -r -v
+display the long listing of all files in /var/log which were modified 60 days or more ago.,find /var/log/ -mtime +60 -type f -exec ls -l {} \;
+display long listing of all files in the current directory whose size is 24 or 25 bytes (doesnt display inode information) .,find . -size -26c -size +23c -exec ls -l '{}' \;
+display long listing of all files in the current directory whose size is 24 or 25 bytes.,find . -size -26c -size +23c -ls
+"Display the mimetype of ""filename""",file -i filename
+display the names without extensions of all the data files in current folder and do not search in sub folders and which have not been changed in the last 60 mins,find . -maxdepth 1 -name '*.dat' -type f -cmin +60 -exec basename {} \;
+"Display operating system type, ie. GNU/Linux",uname -o
+"Display the output of ""ls"" for an 80 character wide display",ls | column -c 80
+"Display permissions, user, group, and full path for each file in the current directory tree",tree -p -u -g -f
+Display total apparent size of a file,du -sb
+Display what flags mount points are mounted with,mount -l
+"Dry run making directories in ""/TARGET_FOLDER_ROOT/"" for each "".mov"" file in the current directory tree","find . -type f -iname \*.mov -printf '%h\n' | sort | uniq | xargs -n 1 -d '\n' -I '{}' echo mkdir -vp ""/TARGET_FOLDER_ROOT/{}"""
+"Dump ""FILENAME"" as 2 byte wide hexadecimal numbers",od -tx2 FILENAME
+"Dump ""file"" as ASCII characters",od -t c file
+Enables shell option 'lithist'.,shopt -s lithist
+Enables shell option 'nocaseglob'.,shopt -s nocaseglob
+Enables shell option 'nocasematch'.,shopt -s nocasematch
+Enables shell option 'progcomp'.,shopt -s progcomp
+"Execute ""cat /tmp/iostat.running"" every 10 seconds",watch -n10 cat /tmp/iostat.running
+"Execute all commands in ""commands-to-execute-remotely.sh"" on server ""blah_server""",cat commands-to-execute-remotely.sh | ssh blah_server
+Extract host name part from URL.,"echo ""$url"" | cut -d'/' -f3"
+files all files which expect directories and display count of them,find /usr/share \! -type d wc -l
+filter output of bind -p by regex,bind -p | grep -a forward
+"Find ""*.dat"" files recursively in the current directory, print the lines starting on line 5 to the console and save to ""concat.txt""","find . -type f \( -name ""*.dat"" \) -exec tail -n+5 -q ""$file"" {} + |tee concat.txt"
+"Find ""*201512*"" regular files in /home/myhome/data/ARCHIVE/ and move them to /home/myhome/ARCHIVE/TempFolder/",find /home/myhome/data/ARCHIVE/. -name . -o -type d -prune -o -name '*201512*' -print | xargs -i mv {} /home/myhome/ARCHIVE/TempFolder/.
+"Find ""*prefs copy"" files in the /mnt/zip directory tree and remove them","find /mnt/zip -name ""*prefs copy"" -print0 | xargs rm"
+"Find ""file.xml"" under the current directory and change directory to its parent",cd `find . -name file.xml -exec dirname {} \;`
+"Find ""file.xml"" under the current directory and change directory to its parent",cd `find . -name file.xml -printf %h`
+Find *.c files under $HOME and search for the string 'sprintf' in those files,find $HOME -name '*.c' -print | xargs grep -l sprintf
+"Find *.css files in the current directory tree, skipping all directories that match pattern '*/lang/en.css'",find . -path '*/lang/en.css' -prune -o -name '*.css' -print
+Find *.java files under current directory and compress them to myfile.tar,"find . -type f -name ""*.java"" | xargs tar rvf myfile.tar"
+Find *.java files under current directory and compress them to myfile.tar (unsafe),"find . -type f -name ""*.java"" | xargs tar cvf myfile.tar"
+"Find .java files in the current directory tree that contain 'TODO', and print their pathnames","find . -name ""*.java"" -exec grep -Hin TODO {} + | cut -d "":"" -f 1"
+Find a size of only the target directory in MB format,du -s --block-size=M /path/to/your/directory/
+Find all $tofind* files/directories under $parentdir,find $parentdir -name $tofind*
+Find all *.$input_file_type files/directories under $source_dir,"find ""$source_dir"" -name *.$input_file_type"
+"Find all *.cls files/directories under current directory and print '{if(length($0) > L) { LINE=$0; L = length($0)}} END {print LINE""L""L}' for each of them where $0 is expanded to the file/directory path","find . -iname ""*.cls"" -exec echo '{if(length($0) > L) { LINE=$0; L = length($0)}} END {print LINE""L""L}' {} \;"
+Find all *.jpg files/directories under current directory,find . -name '*.jpg'
+Find all *.py (case insensitive) files/directories under dir directory ignoring .git path,find dir -not -path '.git' -iname '*.py'
+Find all *.sql file that are not newer than $oldest_to_keep excluding the $oldest_to_keep file,find . -name \*.sql -not -samefile $oldest_to_keep -not -newer $oldest_to_keep
+Find all *.srt files under directory named 'working' and show the first one found,"find working -type f -name ""*.srt"" | head -1"
+Find all *.txt files/directories in entire file system,"find / -name ""*.txt"""
+Find all *.txt files under / and print their sizes and paths,find / -name '*.txt' -exec du -hc {} \;
+Find all *shp* files/directories under current directory,find . -name '*shp*'
+Find all *text files/directories under current directory,"find -name ""*text"""
+Find all the .c files in the current directory tree that contain the string ‘stdlib.h’,find . -name ‘*.c’ | xargs egrep stdlib.h
+Find all .gz archives in the current directory tree,find . -name '*.gz'
+Find all .java files starting from the current folder,"find * -name ""*.java"""
+Find all .js files in the $d directory tree whose pathnames do not contain whitespaces,"find $d -name '*.js' | grep -v "" """
+"Find all the .mp3 files in the music folder and pass to the ls command, -print0 is required if any filenames contain whitespace","find ./music -name ""*.mp3"" -print0 | xargs -0 ls"
+Find all the .mp3 files in the music folder recursively and pass them to the ls command,"find ./music -name ""*.mp3"" -print0 | xargs -0 ls"
+"Find all .py files in the current directory except ""setup.py"" and those beginning with ""test_""",find . -maxdepth 1 -mindepth 1 \( -name '*.py' -not -name 'test_*' -not -name 'setup.py' \)
+Find all 2*.data files/directories under jcho directory,find jcho -name 2*.data
+Find all 400 permission files under /data directory and print 'Modifying ' appended with file path for each of them,find /data -type f -perm 400 -exec echo Modifying {} \;
+Find all 777 permission directories and use chmod command to set permissions to 755,find / -type d -perm 777 -print -exec chmod 755 {} \;
+Find all Subscription.java files/directories under current directory and enter into the parent directory of the first one found,cd $(find . -name Subscription.java -printf '%h\n')
+"find all c, cpp files in current folder","find -name ""*.cpp"" -o -name ""*.c"""
+"find all c, cpp files in current folder",find -regex '.*\.\(c\|cpp\)'
+find all the directories in current folder and do not search in sub directories,find . -maxdepth 1 -type d -print0
+"Find all directories named ""D"" in the current directory tree","find . -name ""D"" -type d"
+"Find all directories named ""D"" in the current directory tree",find ./ -type d -name 'D'
+Find all directories named 'local' in entire file system,find / -name local -type d
+"find all the directories starting with the name ""someNamePrefix"" which have not been modified in the last 10 days and force delete them",find /somePath -type d -name ‘someNamePrefix*’ -mtime +10 -print | xargs rm -rf ;
+Find all directories under 'test' directory tree that match the regex '[course*]' in their paths,"find test -regex ""[course*]"" -type d"
+Find all directories under /home/me/target_dir_1,find /home/me/target_dir_1 -type d
+Find all directories under /home/mywebsite/public_html/sites/all/modules and set their permission to 750,find /home/mywebsite/public_html/sites/all/modules -type d -exec chmod 750 {} +
+Find all directories under current directory and set their permission to 775,find -type d exec chmod 775 {} +
+Find all directories under current directory and set their permission to 775,find -type d | xargs chmod 775
+Find all directories under foldername directory and set their permission to 755,"sudo find foldername -type d -exec chmod 755 {} "";"""
+"Find all duplicate "".jar"" files in the current directory tree","find . -type f -printf ""%f\n"" -name ""*.jar"" | sort -f | uniq -i -d"
+Find all executable files under {} and reverse sort them,find {} -type f -depth 1 -perm +0111 | sort -r
+Find all executable upvoter-* files/symlinks under maximum 1 level down the {} directory,find {} -name 'upvoter-*' \( -type f -or -type l \) -maxdepth 1 -perm +111
+Find all files/directories case insensitively containing 'xt' in their names under '/etc' directory tree,find /etc -iregex '.*xt.*'
+Find all files/directories in directories/files taken from the glob pattern '/tmp/test/*' that were modified within the last day (day counted from today),find /tmp/test/* -daystart -mtime -1
+Find all files/directories named '.todo' under $STORAGEFOLDER directory tree and print the parent directory names,"find ""$STORAGEFOLDER"" -name .todo -exec dirname {} \;"
+Find all files/directories named 'photo.jpg' (case insensitive) under current directory tree,"find . -iname ""photo.jpg"""
+Find all files/directories named 'photo.jpg' under current directory tree,find -name photo.jpg
+Find all files/directories that contain the string literal '`$VERSION`' in their names under current directory tree,find . -name '*`$VERSION`*'
+Find all files/directories that start with 'screen' (case insensitive) in their names under user's home directory tree,"find ~ -iname ""screen*"""
+Find all files/directories under $something directory,find $something
+Find all files/directories under '/etc' directory tree that are greater than 5MB and print their sizes and names,find /etc -size +5M -exec ls -sh {} +
+Find all files/directories under '/etc' directory tree that have been modified after '/etc/motd',find /etc -newer /etc/motd
+Find all the files/directories under '/usr/local' directory tree which have been modified within the last day,find /usr/local -mtime -1
+Find all files/directories under /eserver6 directory and follow symlinks if needed,find /eserver6 -L
+Find all files/directories under current directory and print them,find . -print0 | xargs -I{} -0 echo {}
+Find all files/directories under current directory tree that contain '1' or 'k' in their names,"find . -name ""*[1k]*"""
+Find all files/directories under current directory tree whose names start with '(test)' followed by two digits and end with '.txt' extension,"find . -regex "".*/(test)[0-9][0-9]\.txt"""
+Find all files/directories under current directory tree whose paths match the pattern '*ACK*1' (case insensitive),"find . -iwholename ""*ACK*1"""
+Find all files/directories with '.js' extension under current directory tree without descending into './directory',find . -path ./directory -prune -o -name '*.js' -print
+Find all files/directories with 777 permission under '/apps/audit' and strip write permission for 'other' from them,find /apps/audit -perm -7 -print | xargs chmod o‑w
+Find all files/directories with space in their names under current directory and rename them by replacing all spaces with _,"find . -depth -name ""* *"" -execdir rename ""s/ /_/g"" ""{}"" \;"
+"Find all files called ""file1.txt"" that reside under and below /home/wsuNID/",find /home/wsuNID/ -name file1.txt
+"find all the files ending with "".sh"" in the folder /dir excluding those wth the names foo and bar.","find /dir \( -name foo -prune \) -o \( -name bar -prune \) -o -name ""*.sh"" -print"
+"Find all files excluding files ending with 'gz', 'tmp' and 'xftp' in their names in the current directory tree and compress them with gzip not preserving timestamp and original name","find . -type f ! \( -name ""*gz"" -o -name ""*tmp"" -o -name ""*xftp"" \) -exec gzip -n '{}' \;"
+Find all files in the /home/myuser directory recursively that are older than 7 days,find /home/myuser -mtime +7 -print
+Find all files in the current directory and its sub-directories that have not been assessed in more than 30 days.,find . -atime +30 -print
+"Find all files in current directory excluding hidden files, archive them and put the output into variable full_backup_dir","full_backup_dir=""$(find . -depth \( -wholename \./\.\* \) -prune -o -print | cpio -oav)"""
+find all the files in current directory of size smaller than 10KB.,find . -size -10k
+find all the files in the current folder and display them in the sorted order of their name,find . | sort
+"find all the files in the current folder and display those that are not present in the list ""file.lst""",find . | grep -vf file.lst
+find all files in current folder and display the total lines in them,find . | xargs wc -l
+find all the files in the current folder which have been accessed in the last 24 hours,find . -type f -atime 1
+find all files in the current folder which have not been accessed in the last 30 days in the current folder,find . -atime +30 -print
+find all the files in the folder /opt which have been modified between 20 to 50 days ago,find /opt -mtime +30 -mtime -50
+Find all files in your home directory and below that are exactly 100M.,find ~ -size 100M
+find all files in home folder which have been modified exactly 1 day before,find ~ -mtime 1 -daystart
+"find all the files in the home folder which end with "".tex""",find ~ -iname '*.tex'
+"Find all files named ""test2"" in the current directory",find -name test2 -prune
+Find all files named 'aaa.txt' under current directory tree and display their contents,cat `find . -name aaa.txt`
+Find all files on the system that are world writable,find / -wholename '/proc' -prune -o -type f -perm -0002 -exec ls -l {} \;
+Find all files on your system that are world writable,find / -wholename '/proc' -prune -o -type f -perm -0002 -exec ls -l {} \;
+"Find all files on the system whose names are 'composer.json' and search them for ""drush""",find / -name composer.json -exec grep -n drush {} /dev/null \;
+Find all files starting from the current directory which are owned by the user tommye,find . -user tommye
+Find all files that belong to group developer,find /home -group developer
+Find all files that belong to user root,find / -user root
+find all files that names are dir-name-here,"find / -name ""dir-name-here"""
+Find all files that were modified later than ordinary_file in the current directory and its sub-directories.,find -newer ordinary_file
+Find all files that have wrong permission,find / \( -perm -006 -o -perm -007 \) \( ! -type -l \) -ls
+"Find all files throughout the entire file hierarchy with the optional constraints of опция_поиска, значение and/or опция_действия.",find / [опция_поиска] [значение] [опция_действия]
+Find all files under $musicdir directory,"find ""$musicdir"" -type f -print"
+Find all files under ./lib/app and redirect their sorted list to myFile,find ./lib/app -type f | sort | tee myFile
+Find all files under /path and below writable by `group' and `other',find /path -perm -022
+Find all files under /path and below writable by `group' and `other',"find /path -perm -g+w,o+w"
+Find all files under /path and below writable by `group' and `other',find /path -perm -go+w
+Find all files under /path and calculate their md5sum,find /path -type f -print0 | xargs -0 md5sum
+Find all files under /somefolder matching the extended regex '\./(.*\.error.*|second.*log|.*FFPC\.log)$' in their paths,find -E /somefolder -type f -regex '\./(.*\.error.*|second.*log|.*FFPC\.log)$'
+Find all files under maximum 1 level down the ./subfolder and ./subfolder/*/ paths,find ./subfolder ./subfolder/*/ -maxdepth 1 -type f
+Find all the files which were modified more than 50 days but less than 100 days ago,find / -mtime +50 -mtime -100
+Find all files with the extension jpg regardless of case,find . -type f -iname '*.jpg' -print0
+Find all files with name ending with .txt and display only the filenames without full paths,"find ./ -name ""*.txt"" | rev | cut -d '/' -f1 | rev"
+find all gzip files in a folder,"find /home/foo -name ""*.gz"""
+find all the header files in /usr/include which have been modified in the last 400 days,"find /usr/include -type f -mtime -400 -name ""*.h"""
+"Find all instances of first column with unique rest of line, and output a count for each first column that found in unique lines.",sort file | uniq | cut -f1 -d' ' | uniq -c | rev
+"Find all JPG files under the ""$SOURCE"" directory and below","find ""$SOURCE"" -type f -iname '*.jpg'"
+find all the php files,find -name '*.php'
+find all php files in the folder /var/www/,"find /var/www/ -type f -iname ""*.php"" -print"
+"find all posix-extended regex ""[a-f0-9\-]\{36\}\.jpg"" files","find . -regextype posix-extended -regex ""[a-f0-9\-]\{36\}\.jpg"""
+find all readable files,find / -readable
+Find all regular files in the current directory tree and print a command to move them to the current directory,find . -type f -exec echo mv -t . {} +
+find all the regular/normal files in the current folder and rename them to html files,find main-directory -type f -exec mv -v '{}' '{}'.html \;
+find all the normal/regular files in the current folder which have been modified two days ago and display a long listing of them,find . -type f -mtime 2 -mtime -3 -daystart -exec ls -l {} \;
+"find all the regular/normal files in the current folder which belong to the user ""sedlav""",find . -user sedlav -type f
+"Find all regular files under $DIR directory tree with "".$TYPE"" extension (case insensitive) where $TYPE expands in the current shell","find $DIR -type f -iname ""*.$TYPE"""
+Find all regular files under $FILES_PATH directory tree and save the output to 'FILES' variable,"FILES=$(find $FILES_PATH -type f -name ""*"")"
+Find all regular files under '/home/john' directory tree that start with 'landof' in their names,"find /home/john -name ""landof*"" -type f -print"
+Find all regular files under current directory tree excluding files from './dir1' (except './dir1/subdir1/) and './dir2' directories,find . \( -not -path './dir1/*' -and -not -path './dir2/*' -or -path './dir1/subdir1/*' \) -type f
+Find all socket files in the current directory and its sub-directories.,find . -type s
+"find all the text files in current folder and move all these to another folder appending "".bar"" at the end of these files","find . -name ""*.txt"" | xargs -I '{}' mv '{}' /foo/'{}'.bar"
+find all the text files in the file system and search only in the disk partition of the root.,"find / -mount -name ""*.txt"""
+find all the text files in the file system and search only in the disk partition of the root.,"find / -xdev -name ""*.txt"""
+Find all thumb.png files in the temps/ directory tree,"find temps/ -name ""thumb.png"""
+find all the wav files in the current folder and do not search in the sub directories,find . -name '*.wav' -maxdepth 1
+find all the xml files in the current folder which are present in the pattern text file,"find . -name ""*.xml"" -exec grep -HFf <(find . -name ""*.txt"" -printf ""%f\n"") {} \;"
+find all the zip files in the current folder and create a tar ball of these zip files,find . -type f -name '*.zip' -print0 | xargs -0 tar -xzf
+Find and delete all core files in the user's home directory and below.,find ~/ -name 'core*' -exec rm {} \
+Find and print all PDF files in the current directory and its sub-directories except for any found in the ./pdfs directory.,"find . -name ""*.pdf"" -print | grep -v ""^\./pdfs/"""
+Find and show all files in the current directory tree that are smaller than 500 kB,find . -size -500k
+Find command will display top 5 small files from curent directory . most probably you will get ZERO bytes files .,find . -type f -exec ls -s {} \; sort -n |head -5
+Find directories that are directly under $workspace_ts directory (no-subdirectories) and were modified less than 30 days ago,find $workspace_ts -mindepth 1 -maxdepth 1 -type d -mtime -30
+"Find the directories whose names contain ""New Parts"" at level 3 of the current directory tree and create symlinks to them in /cygdrive/c/Views","find -mindepth 3 -maxdepth 3 -type d -name ""*New Parts*"" -exec ln -s -t /cygdrive/c/Views {} \;"
+Find the directory with least modification time under current directory,find -type d -printf '%T+ %p\n' | sort | head -1
+Find directories with permissions 777 and change them to 755 recursively,find /home -type d -perm 777 -print -exec chmod 755 {} \;
+Find every JavaScript file in the wordpress directory tree,find wordpress -name '*js'
+"find the file ""myfile.txt"" in the folder /home/user/myusername/",find /home/user/myusername/ -name myfile.txt -print
+Find files/directories containing 'test' in their names and display the directory contents before the directories themselves,"find -name ""*test*"" -depth"
+Find files/directories named 'sar' under directory trees whose path starts with '/u' or '/b' or '/s' or '/o',find `ls -d /[ubso]*` -name sar
+"Find files/directories under /users/tom that matches both the pattern ""*.pl"" and ""*.pm""","find /users/tom -name ""*.pl"" -name ""*.pm"""
+Find files/directories writable by group and others under the /path directory,find /path -perm -022
+Find files/directories writable by group and others under the /path directory,"find /path -perm -g+w,o+w"
+Find files/directories writable by group and others under the /path directory,find /path -perm -go+w
+find the file arrow.jpg in the entire file system,find / -name arrow.jpg
+"find files in the current directory and sub-directories, that were accessed within last hour",find -amin -60
+Find files in the current directory tree that have one link,find . -links 1
+Find files newer than main.css in ~/src,find ~/src -newer main.css
+Find files on the system bigger than 50MB but smaller than 100MB,find / -type f -size +50M -size -100M
+Find files that don’t have 644 permissions,find / -type f ! -perm 644
+Find files under /usr that are newer than the first file `FirstFile',find /usr -newer /usr/FirstFile -print
+find file which name like 'foo.*' in current directory.,"find . -name ""foo.*"""
+Find files with 002 permission in entire file system with the null character as the delimiter,find / -type f -perm -002 -print0
+Find files with inode number 199053,find / -inum 199053
+Find the first file/directory under current directory and quit,find . ... -print -quit
+Find grub.conf files in entire file system,find / -name grub.conf
+Find image files and move them to the pictures directory,find ~/Desktop -name “*.jpg” -o -name “*.gif” -o -name “*.png” -print0 | xargs -0 mv –target-directory ~/Pictures
+Find the largest 10 directories under current directory,find . -type d -print0 | xargs -0 du | sort -n | tail -10 | cut -f2 | xargs -I{} du -sh {}
+"find md5sums of files named ""file*.txt""",md5sum file*.txt
+find not case sensitive all directories that names are 'project.images',"find / -type d -iname ""project.images"" -ls"
+Find the password file between sub-directory level 2 and 4,find -mindepth 3 -maxdepth 5 -name passwd
+Find the password file between sub-directory level 2 and 4.,find -mindepth 3 -maxdepth 5 -name passw
+Find recursively all files under current directory tree that contain a colon in the filename,find . -name \*\:\*
+"Find regular files named ""expression -or expression"" under and below /dir/to/search/",find /dir/to/search/ -type f -name 'expression -or expression' -print
+"Finds strings with text ""searched-string"" recursively in all files of current folder.","grep -r ""searched-string"" ."
+"Force create a symbolic link in ""/usr/bin/"" for each file matching ""$javaUsrLib/jdk1*/bin/*""",sudo ln -f -s $javaUsrLib/jdk1*/bin/* /usr/bin/
+"Force create a symbolc link named ""/usr/local/bin/fpdf"" to ""/usr/local/bin/findpdftext""","sudo ln -s -f ""/usr/local/bin/findpdftext"" ""/usr/local/bin/fpdf"""
+"Force create a symbolc link named ""new_dir"" to ""/other/dir"" without dereferencing ""new_dir""",ln -sfn /other/dir new_dir
+force delete all the files that have been modified in the last 3 days,find . -mtime -3 -exec rm -rf {} \;
+"Forcibly removes files '/tmp/stored_exception', '/tmp/stored_exception_line', '/tmp/stored_exception_source'",rm -f /tmp/stored_exception /tmp/stored_exception_line /tmp/stored_exception_source
+"Format output of ""mount"" as a table",mount | column -t
+"Format space separated fields in ""filename"" as a table",column -t -s' ' filename
+Format time string @$TIMESTAMP according to default time format,date -d @$TIMESTAMP
+Generate a random 32 ASCII character password from /dev/urandom and save it to variable 'pass',pass=$(LC_CTYPE=C < /dev/urandom tr -cd [:graph:] | tr -d '\n' | fold -w 32 | head -n 1)
+"Get from file 'File1.txt' strings starting with 'Q', extract only part of them following after '=' sign, and print which ones are not found in 'File2.txt'",grep ^Q File1.txt | cut -d= -f2- | sort | comm -23 - <(sort File2.txt)
+Get the list of regular files in the current directory,"find . -mindepth 1 -maxdepth 1 -type f -print0 | xargs -0 -I {} echo ""{}"""
+Get the sizes (and total size) of all files under dir1 directory,find dir1 ! -type d |xargs wc -c
+List all files under and below the directory given as variable $FULFILLMENT,find $FULFILLMENT -ls
+List all files under current directory matching the regex '.*\(c\|h\|cpp\)',find . -type f -regex '.*\(c\|h\|cpp\)' -exec ls {} \;
+"List all paths to files or directories under ""/data/"" that start with ""command-"" and end with ""-setup"", sort the result by the version number specified between ""command-"" and ""-setup"" (least to greatest)","find /data/ -name 'command-*-setup' | sort -t - -V -k 2,2"
+List all regular files in the current directory tree,find . -type f -exec ls -l '{}' \;
+list all samba files in /var/l* directory ( /var/lib or /var/log ),find /var -path */l??/samba*
+list all the sqlite files in the current folder,"find ./ -name ""*.sqlite"" -ls"
+List all symlinks under current directory and search for targetfile.txt in this list,find . -type l | xargs -I % ls -l % | grep targetfile.txt
+List all ~/bin/FilesDvorak/.* (non-recursive) and ~/.PAST_RC_files/.* (recursive) files/directories and take common entries between these two lists,comm -12 <(find ~/bin/FilesDvorak/.* -maxdepth 0) <(find ~/.PAST_RC_files/.*)
+"list complete path name to process associated with pid ""$1""",find /proc/$1/exe -printf '%l\n'
+Lists content of all subfolder (without recursion) in a current folder.,ls -d -1 $PWD/**/*
+List files and directories one level deep in the current directory tree,tree -L 2
+List file contents of compressed file $i,gzip -l $i
+List in detail the regular files from the /somelocation/log_output directory tree that were last changed more than 40 days ago,find /somelocation/log_output -type f -ctime +40 -exec ls -l {} \;
+"list in long format all files from / whose filename ends in ""jbd"", not descending into directories that are not readable while searching.",find / \! -readable -prune -o -name '*.jbd' -ls
+List the largest file prefixed by its size in bytes of all files under the current directory,find . -type f -name '*.gz' -printf '%s %p\n'|sort -nr|head -n 1
+List the names of all files under current directory,find . -type f -exec basename {} \;
+"list names of bind functions containing ""/""",bind -l | grep /
+"list symbolic links under the directory ""$directory"" using contents of the $IFS variable between output of each one","find $directory -type l -printf ""%p$IFS"""
+"Locate all ""copyright"" files under and below /usr/share/doc","find /usr/share/doc -name ""copyright"""
+Locate all passwd files on the system,find / -name passwd
+"long list all the files in the curent folder starting with ""Tes""","find . -type f -name ""Tes*"" -exec ls -l {} \;"
+"Look for ""filename"" in the current directory and below",find -name filename
+"Make 3 directories named ""~/Labs/lab4a/folder"" followed by the number 1, 2, or 3","mkdir ~/Labs/lab4a/folder{1,2,3}"
+"Make 3 directories named ""~/Labs/lab4a/folder"" followed by the number 1, 2, or 3",mkdir ~/Labs/lab4a/folder{1..3}
+Make a directory in the current working directory with a random 32 alphanumeric character name,cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 | xargs mkdir
+Make a directory in the current working directory with a random 32 alphanumeric character name,mkdir $(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+"Make directories ""/tmp/A"", ""/tmp/B"", ""/tmp/C"", and ""/tmp/ dir with spaces""","mkdir /tmp/A /tmp/B /tmp/C ""/tmp/ dir with spaces"""
+"Make directory ""mybuild""",mkdir mybuild
+Merge colon-separated information from file1 and file2 where first field of both files matches,join -t: <(sort file1) <(sort file2)
+"Merge each line in ""file"" into a single comma separated line","paste -d, -s file"
+"Mount a partition in ""$IMAGE"" with offset ""$OFFSET"" to ""media/$DEST"" as read only using a loop device","mount -o ro,loop,offset=$OFFSET -t auto $IMAGE /media/$DEST"
+"Move all files and directories in the current directory to ""/foo""",mv * /foo
+"Move all files and directories in the current directory to ""/foo""",mv `ls` /foo
+Move all files/directories under current directory to destDir,find sourceDir -print0 | xargs -0 mv -t destDir
+Move all files from the `sourceDir' directory to the `destDir' directory,find sourceDir -mindepth 1 -maxdepth 1 -exec mv --target-directory=destDir '{}' +
+Move all files from the `sourceDir' directory to the `destDir' directory,find sourceDir -mindepth 1 -maxdepth 1 -print0 | xargs -0 mv --target-directory=destDir
+Move all regular files under current directory to ./newdir,find ./ -type f -print | xargs -i mv -f {} ./newdir
+Move all regular files under current directory to ./newdir,find ./ -type f -print | xargs -l56 -I {} mv -f {} ./newdir
+Moves file '$2' to the folder where '$1' file is located.,"mv ""$2"" ""`dirname $1`"""
+move files accessed more than one day ago to directory TMP,find . -atime +1 -type f -exec mv {} TMP \; # mv files older then 1 day to dir TMP
+Open a ssh connection to user@host with X11 forwarding to run GUI programs,ssh user@host -X
+Output all lines in 'file' comparing the first 12 characters and discarding any adjascent lines where these characters are duplicates.,uniq -w12 -c file
+Output success.txt omitting lines whose first field appears in fail.txt - lines in fail.txt must appear in the same order as they do in success.txt.,join -v1 success.txt fail.txt
+Perform a white space safe search for all files/directories under current directory,find . -print0 | xargs -0
+"Print ""This is a sentence."" by replacing all consecutive space characters with a single newline character","echo ""This is a sentence."" | tr -s "" "" ""\012"""
+"Print a count of duplicate lines in ""filename""",sort filename | uniq -c
+"Print a count of duplicate lines in ""filename"" sorted by most frequent",sort filename | uniq -c | sort -nr
+Print a list of all duplicate case insensitive file paths in the current directory tree,find . | sort -f | uniq -i -d
+Print a list of case insensitive duplicate filenames in the current directory,ls | sort -f | uniq -i -d
+"Print a minimal set of differences between files in directories ""teste1"" and ""teste2"", treat absent files as empty, ignore differences in whitespace, treat all files as text, and print 3 lines of unified context",diff -burNad teste1 teste2
+Print A record for domain 'domain.' from 'some.other.ip.address' nameserver,dig @some.other.ip.address domain. a
+Print a sorted list of all .jpg files in the current directory and below,find -name '*.jpg' | sort -n
+"Print appended data in ""/var/log/some.log"" that match ""foo"" and ""bar""",tail -f /var/log/some.log | grep --line-buffered foo | grep bar
+Print the base name of the current working directory,"basename ""`pwd`"""
+Print the base name of the current working directory,basename $(pwd)
+Print the base name of the current working directory,basename `pwd`
+Print the base name of the current working directory,"echo ""$(basename $(pwd))"""
+Print the base name of the current working directory,pwd | xargs basename
+Print the base name via grep of the current working directory,pwd | grep -o '[^/]*$'
+Print the basename from a colon separated path 'a:b:c:d:e',"basename $(echo ""a:b:c:d:e"" | tr ':' '/')"
+Print the calendar for February 1956,cal 02 1956
+"Print the commands that would execute ""myfile"" on all .ogv files from the current directory tree",find ./ -name *.ogv -exec echo myfile {} \;
+Print continuous characters '/' and '\' randomly from /dev/urandom,"grep -ao ""[/\\]"" /dev/urandom|tr -d \\n"
+Print the day at 1 day ago in 2 months from now,"date -d ""$(date -d ""2 months"" +%Y-%m-1) -1 day"" +%a"
+Print the directory name of the physical current working directory,dirname `pwd -P`
+"Print each line that is found only once in ""file1"" and ""file2"" combined",sort file1 file2 | uniq -u
+"Print the empty files/directories among empty1, empty2 and not_empty",find empty1 empty2 not_empty -prune -empty
+"Print every 20 bytes of standard input as tab separated groups of bytes 1-3, 4-10, and 11-20","fold -b -w 20 | cut --output-delimiter $'\t' -b 1-3,4-10,11-20"
+Print file system disk space usage in human readable format of the root filesystem,df -h /
+Prints folder where current script is located,"echo ""dirname: `dirname ""$0""`"""
+Prints folder where current script is located,"echo ""dirname: `dirname $0`"""
+Print fourth column of space-separated data from text file text.txt.,"cat text.txt | cut -d "" "" -f 4"
+Print full date of yesterday,echo `date -v-1d +%F`
+Prints full process tree with id number of each process.,pstree -p
+Print help on 'cat' command usage,cat --help
+Print information about all users who are logged in,who -la
+"Print the last 1000 lines of all files matching ""/var/spool/cron/*""",tail -n 1000 /var/spool/cron/*
+Print last four bytes of string '0a.00.1 usb controller some text device 4dc9',echo 0a.00.1 usb controller some text device 4dc9 | rev | cut -b1-4 | rev
+"Print the last line of the alphabetically sorted lines in file ""set""",tail -1 <(sort set)
+"Print lines 15967 to 16224 in file ""dump.txt""",cat dump.txt | head -16224 | tail -258
+"Prints long listing of directories '/tmp', '/tnt' themselves.",ls -ld /tmp /tnt
+Prints long listing of top ten most memory using processes in a system.,"ps -e -orss=,args= | sort -nr | head"
+Print numbers from 1 to 10 with 2 values per line,"seq 10 | paste -sd"" \n"" -"
+Print output of script 'trap.sh',~ $ . trap.sh | cat
+Prints path to folder that contains target of the symbolic link ../../../../etc/passwd.,$(dirname $(readlink -e ../../../../etc/passwd))
+Prints path to the folder that contains target of symbolic link ../../../../etc/passwd.,$(dirname $(readlink -e ../../../../etc/passwd))
+"Print pathname of a file that is connected to the standard output of the command ""yes""",echo <(yes)
+Print the physical current working directory,"echo ""`pwd -P`"""
+"Print process tree, adjusting output width with a screen size.",pstree | cat
+Prints process tree of user 'user' processes.,pstree -p user
+"Print the second line of output of ""ls -l""",ls -l | head -2 | tail -1
+"Print the second line of output of ""ls -l""",ls -l | tail -n +2 | head -n1
+Print second section of space-separated data coming from stdin.,cut -d ' ' -f 2
+Print second section of space-separated data coming from stdin.,cut -d\ -f 2
+"Print string ""123"" once with '1' replaced by 'a' and second time replaced by 'b'",echo 123 | tee >(tr 1 a) | tr 1 b
+Prints strings with MAC address configuration of each network interface in system.,ifconfig | grep HW
+"Print the terminal file of the users who are logged in with ""admin"" in their name",who |grep -i admin |cut -c10-20
+Print timestamp as HH:MM:SS,"date +""%T"""
+Prints total count of lines of all *.php files in a current folder and subfolders.,find . -name '*.php' -type f -exec cat -- {} + | wc -l
+Print true directory name of the current directory,readlink `pwd`
+"Print unique lines in sorted file ""A"" when compared to sorted files ""B"", ""C"", and ""D""",comm -2 -3 A B | comm -2 -3 - C | comm -2 -3 - D
+Print the user name of the current user,echo `whoami`
+Print the user name of the current user,whoami
+Print working directory separated by newlines instead of forward slashes,pwd | tr '/' '\n'
+"Prompt user to type a list of cron jobs directly at the terminal, then use these replacing previously existing cron jobs.",crontab
+"prune all the files in the current directory, only current directory (.) is the output",find . -prune
+"Read two bytes from ""/dev/urandom"" and print them as an unsigned integer",od -A n -N 2 -t u2 /dev/urandom
+"Read a line from standard input into variable ""ENTERED_PASSWORD"" without echoing the input",read -s ENTERED_PASSWORD
+"Read a line from standard input into variable ""REPLY"" with prompt ""$*""","read -p ""$*"""
+"Read a line from standard input into variable ""SSHPASS"" with prompt ""Password: "" and without echoing the input","read -p ""Password: "" -s SSHPASS"
+"Read a line from standard input into variable ""ans"" without backslash escapes",read -r ans
+"Read a line from standard input into variable ""message"" with the prompt ""Please Enter a Message: $cr""","read -p ""Please Enter a Message: $cr"" message"
+"Read a line from standard input with prompt ""Enter your age:\n""",read -p $'Enter your age:\n'
+"Read a line of standard input with prompt ""Enter the path to the file: "" and suggestion ""/usr/local/etc/"" and save the response to variable ""FILEPATH""","read -e -p ""Enter the path to the file: "" -i ""/usr/local/etc/"" FILEPATH"
+"Read a line of standard input with prompt ""My prompt: "" and save it to variable ""varname""","read -e -p ""My prompt: "" varname"
+Read one character from standard input into variable 'c',read -n 1 c
+"Recursively change the owner group of ""/var/www"" of to ""www-data""",sudo chown -R www-data:www-data /var/www
+"Recursively change owner to ""amzadm"" and group to ""root"" of all files in ""/usr/lib/python2.6/site-packages/awscli/""",chown amzadm.root -R /usr/lib/python2.6/site-packages/awscli/
+Recursively copies '$1' directory to '$2' directory.,cp -r $1 $2
+"Recursively copy all directories in ""/path/to/source"" to ""/path/to/dest/"" preserving directory hierarchy",find /path/to/source -type d | cpio -pd /path/to/dest/
+Recursively finds all '*.pdf' files and folders in a current folder and removes them without prompting.,"find . -name ""*.pdf"" -print0 | xargs -0 rm -rf"
+Recursively finds all '*.pdf' files in a current folder and removes them without prompting.,find . -name '*.pdf' -exec rm -f {} \;
+Recursively finds all files in a current folder excluding already compressed files and compresses them with level 9.,find . -type f | egrep -v '\.bz2' | xargs bzip2 -9 &
+"Recursively finds all files with any cased text ""Text"" in a current folder, and precedes found string with its number in file.","grep -inr ""Text"" folder/to/be/searched/"
+Recursively lists all *.py and *.html files in a current folder.,ls **/*.py **/*.html
+Recursively prints paths to all text file in folder (ignores binary files).,"grep -RIl """" ."
+Recursively removes all files in a current folder but '*txt' files.,find . -type f -not -name '*txt' | xargs rm
+Recursively removes all files like '*.pyc' in a current folder.,"find . -name ""*.pyc"" -exec rm -rf {} \;"
+Recursively removes all files like '*.pyc' in a current folder.,"find . -name ""*.pyc""|xargs rm -rf"
+Recursively removes all files like '*.pyc' in a current folder.,find . -name '*.pyc' -print0 | xargs -0 rm
+Recursively removes all files like '*.pyc' in a current folder.,rm **/*.pyc
+Recursively removes all files like '*.pyc' in a current folder.,rm `find . -name \*.pyc`
+Recursively removes all files like any-cased '*.pyc' in a current folder.,find . -iname '*.pyc' -print0 | xargs -0 --no-run-if-empty rm
+"Recursively set all permissions under ""/directory"" to 755",chmod -R 755 /directory
+"Remount ""/dev/sda7"" partition as executable",sudo mount -o remount -o exec /dev/sda7
+"Remount ""/dev/shm"" with a maximum size of ""40G""","mount -o remount,size=40G /dev/shm"
+Remove `core' files whose status was changed more than 4 days ago,find `pwd` -name core -ctime +4 -execdir /bin/rm -f {} \;
+"Remove the .jpg files from the current directory whose names match regular expression "".+-[0-9]+x[0-9]+\.jpg""","find . -type f -regex "".+-[0-9]+x[0-9]+\.jpg"" -exec rm -rf {} \;"
+"Remove the .jpg files from the current directory whose names match regular expression "".+-[0-9]+x[0-9]+\.jpg""","find . -type f -regex "".+-[0-9]+x[0-9]+\.jpg"" | xargs rm"
+Remove all *.doc files from the current directory tree,"find . -name '*.doc' -exec rm ""{}"" \;"
+"Remove all .sh files in the current directory tree whose names begin with ""new""","find . -name ""new*.sh"" -exec rm -f '{}' \+"
+"Remove all .sh files in the current directory tree whose names begin with ""new""","find . -name ""new*.sh"" -exec rm -f '{}' \;"
+Remove all \*~ files under dir,find dir -name \\*~ -exec rm {} +
+remove all the core files from /usr folder which have not been accessed in the last 7*24 hours,"find /usr -name core -atime +7 -exec rm ""{}"" \;"
+Remove all files containing 'sample' (case insensitive) in their names under '/home/user/Series' directory tree,"/usr/bin/find /home/user/Series/ -iname ""*sample*"" -exec rm {} \;"
+Remove all files containing 'sample' (case insensitive) in their names under '/home/user/Series' directory tree,find /home/user/Series/ -iname '*sample*' -exec rm {} \;
+Remove all files that were older than 3 days,find . -type f -mtime +3 –exec rm –f {} \;
+"Remove all files with names like ""vmware-*.log"" from the current directory tree",find . -name vmware-*.log -print0 | xargs -0 rm
+"Remove all files with names like ""vmware-*.log"" from the current directory tree",find . -name vmware-*.log | xargs -i rm -rf {}
+Remove all libGLE* files from the current directory tree,find . -name libGLE* | xargs rm -f
+Remove all non-hidden files in the current directory tree,"find -name ""*"" | xargs rm -f"
+remove all the regular/normal files in the temp folder and do not delete in the sub folders,find /tmp -maxdepth 1 -type f -delete
+Remove all vmware-*.log files under current directory ensuring white space safety in filename,find . -name vmware-*.log -print0 | xargs -0 rm
+Removes any empty folder that matches pattern ed*.,rmdir ed*
+"Remove containing directories from variable 'path' ie. ""/some/specific/directory"" becomes ""directory"".",path=$(basename $path)
+Remove empty directories from directory tree /srv/abc,find /srv/abc/ -type d -empty -exec rmdir {} \;
+"Remove everything in the current directory except files matching regular expression ""exclude these""","find . -maxdepth 1 | grep -v ""exclude these"" | xargs rm -r"
+Remove files modified at least five days ago in directory trees /path/to/files*,find /path/to/files* -mtime +5 -exec rm {} \;
+Remove files that are greater than 1MB in size under current directory,find . -type f -size +1M -exec rm {} +
+Remove filetype suffix (last dot and following characters if any) from filename,echo $filename | rev | cut -f 2- -d '.' | rev
+Remove the passphrase from ~/.ssh/id_rsa.,"ssh-keygen -f ~/.ssh/id_rsa -P """""
+"Rename ""file.txt"" in directories ""v_1"", ""v_2"", and ""v_3"" each to ""v_1.txt"", ""v_2.txt"", and ""v_3.txt"" respectively and print the conversion","rename -v 's#/file##' v_{1,2,3}/file.txt"
+"Rename ""file001abc.txt"" to ""abc1.txt""",mv file001abc.txt abc1.txt
+"Rename ""old"" to ""tmp""",mv old tmp
+Rename .jpg files to .jpeg in all level 2 subdirectories of the current directory,find -maxdepth 3 -mindepth 3 -type f -iname '*.jpg' -exec rename -n 's/jpg$/jpeg/i' {} +
+Rename all files and directories under current directory tree by converting the names to small letters without descending into 'CVS' directory,find . -name CVS -prune -o -exec mv '{}' `echo {} | tr '[A-Z]' '[a-z]'` \; -print
+Rename file extension '.andnav' (case insensitive) to '.tile' for all files/directories under current directory tree,"find . -name ""*.andnav"" -exec rename -v 's/\.andnav$/\.tile/i' {} \;"
+Rename file extension '.andnav' to '.tile' for all files/directories under current directory tree,"find . -name ""*.andnav"" | rename ""s/\.andnav$/.tile/"""
+"Repeat ""image.png"" 10 times on a single line",echo $(yes image.png | head -n10)
+"Repeat ""image.png"" 10 times on a single line",yes image.png | head -n10 | xargs echo
+"replace ""exp_to_find_for_replacement"" with ""exp_to_replace"" for all the files in the current folder",find -name ‘*exp_to_find_in_folders*’ -exec rename “s/exp_to_find_for_replacement/exp_to_replace/” {} \;
+"Replace each non-blank line in ""YOURFILE"" preceded with ""pX="" where ""X"" is the line number",grep -v '^$' YOURFILE | nl -s= -w99 | tr -s ' ' p
+"Reports count of characters in the value of ${FOO} variable as follows: ""length(FOO)==<counted number of characters>""","echo -e ""length(FOO)==$(echo -ne ""${FOO}"" | wc -m)"""
+"Retrieve column number from column name ""Target"" in file ""table""","head -1 table | tr -s ' ' '\n' | nl -nln | grep ""Target"" | cut -f1"
+"Retrieve only build number of current kernel, ie. #104",uname -v | grep -o '#[0-9]\+'
+"Reverse the space separated words in ""aaaa eeee bbbb ffff cccc""","echo ""aaaa eeee bbbb ffff cccc""|tr ' ' '\n'|tac|tr '\n' ' '"
+"Run 'join' on file1 and file2, using a literal tab character as field separator.",join -t $'\t' file1 file2
+"Run 'join' with the number-sorted output of file1 and file2, without modifying file1 or file2: for each line with a common first field in file1 and file2, output the common field followed by the extra fields in both files.",join <(sort -n file1) <(sort -n file2)
+Run 'otherscript.sh' script with all environment variables specified in the file 'xxxx',env `cat xxxx` otherscript.sh
+Run script $2 on remote host $1 using interpreter $INTERPRETER with pseudo-terminal allocation,"cat $2 | grep -v ""#"" | ssh -t $1 $INTERPRETER"
+"Save absolute path of ""$path"" whose parents exist to variable ""abspath""",abspath=$(readlink -f $path)
+"Save absolute path of the script filename in variable ""SCRIPT""","SCRIPT=""$(readlink --canonicalize-existing ""$0"")"""
+"Save the canonical filename of the script in variable ""me""",me=$(readlink --canonicalize --no-newline $0)
+"Save the contents of ""numbers.txt"" to variable ""f""",f=$(cat numbers.txt)
+"Save full path of command ""cat"" to variable ""CAT""",CAT=`which cat`
+"Save the full path of command ""f"" to variable ""full_f""","full_f=""$(which f)"""
+"Save the greater version number of ""$1"" and ""$2"" into variable ""ver""","ver=`echo -ne ""$1\n$2"" |sort -Vr |head -n1`"
+"Save IP addresses of the host name in variable ""ip""",ip=$(hostname -I)
+Save the last modified time of file 'file_name' to variable 'STAMP',STAMP=`date -r file_name`
+"Save the md5 sum hash of ""$my_iso_file"" to variable ""md5""","md5=$(md5sum ""$my_iso_file"" | cut -d ' ' -f 1)"
+"Save the number of bytes in ""$file"" after decompression into variable ""size""","size=""$(zcat ""$file"" | wc -c)"""
+"Save standard input to variable ""myVar""",myVar=$(tee)
+"Search the ""test1"" directory recursively for regular files named ""textfile.txt""",find test1 -type f -name 'textfile.txt' -print
+Search the /mnt/raid/upload directory tree for files that have not been modified within the last 5 days,find /mnt/raid/upload -mtime +5 -print
+"Search the current directory and all of its sub-directory for any PDF files being careful to prevent the shell from expanding ""*"" before it's passed to find.",find . -name \*.pdf -print
+"Search the current directory for files whose names start with ""messages."" ignoring SVN and CVS files","find \( -name 'messages.*' ! -path ""*/.svn/*"" ! -path ""*/CVS/*"" \) -exec grep -Iw uint {} +"
+Search the current directory recursively for text files containing at least one character,find -type f -exec grep -Iq . {} \; -and -print
+Search the current directory recursively for text files containing at least one character,find . -type f -exec grep -Iq . {} \; -and -print
+Search the current directory tree for .rb files ignoring .vendor directories,find . -name .vendor -prune -o -name '*.rb' -print
+Search the current directory tree for all .java files newer than the file build.xml,find . -name '*.java' -newer build.xml -print
+Search the current directory tree for files and directories with permissions 775,find . -perm 775 -print
+"Search the current directory tree for regular files modified within the past 24 hours whose names do not end with "".DS_Store""",find . -mtime -1 ! -name '.DS_Store' -type f -exec basename {} \;
+"Search the current directory tree for regular files modified within the past 24 hours whose names do not end with "".DS_Store""",find . -mtime -1 ! -name '.DS_Store' -type f -printf '%f\n'
+"Search the current directory tree for regular files owned by user ""www""",find -type f -user www
+"Search the current directory tree for regular files whose names end with ""keep.${SUFFIX}"", where $SUFFIX is a shell variable","find . -type f -name ""*keep.${SUFFIX}"""
+"Search the current directory tree for regular files whose names match regular expression "".+-[0-9]+x[0-9]+\.jpg""","find . -type f -regex "".+-[0-9]+x[0-9]+\.jpg"""
+Search the current directory tree for symbolic links to files matching pattern '*/test*',find -P . -lname '*/test*'
+Search the directory $path recursively for regular files with the given $extension,"find $path -type f -name ""*.$extension"""
+Search the entire file hierarchy for all regular files owned by olduser and change their ownership to newuser.,find / -user olduser -type f -exec chown newuser {} \
+Search the entire file hierarchy for files named zsh that exist on ext3 file systems and print out detailed information about the file.,find / -fstype ext3 -name zsh -ls
+search files in current folder using name patterns,"find . -name ""$pattern"""
+"Search the first 300 commands in history containing ""scp"" and ending in ""important""",history 300 | grep scp | grep important$
+"Search for "" 840"" in history","history | grep "" 840"""
+"Search for ""ifconfig"" in the output of ""history"" and print 5 lines that precede and follow",history | grep -C 5 ifconfig
+"Search for ""ifconfig"" in the output of ""history"" and print 5 lines that precede and follow",history | grep ifconfig -A5 -B5
+"Search for ""pattern"" in ""file"" and join each line by a space",cat file | grep pattern | paste -sd' '
+Search for '“foobar”' in all files starting with '‘' and ending with '’' and contain '.' in their names in the entire filesystem and display only the matched files,find / -name ‘*.*’ -exec grep -il “foobar” {} \;
+Search for 'example' in all regular files under current directory tree,"find . -type f -print | xargs grep ""example"""
+Search for 'foo' in all regular files under 'sources' directory tree and show the matched lines with filenames,find sources -type f -exec grep -H foo {} +
+Search for 'magic' in all regular files under current directory tree,"find . -type f | xargs grep ""magic"""
+"search for a file ""file"" in current folder and if the file is found quit !",find -name file -quit
+"search for all the files in the entire file system which have either suid or sgid bit enabled and find of diff of these files with the file ""files.secure"".",find / \( -perm 2000 -o -perm 4000 \) -print | diff - files.secure
+search for all the log files in the folder /apps which have not been modified in the last 60 days and which are present in the same file system as that of /apps and delete them,"find /apps -xdev -name ""*.log"" -type f -mtime +60 | xargs rm"
+search for all the perl files in the folder /nas/projects/mgmt/scripts/perl which have been modified 8-10 days ago.,"find /nas/projects/mgmt/scripts/perl -mtime 8 -mtime -10 -daystart -iname ""*.pl"""
+search for all the regular files in the folder /home which have the permission 077,find /home -type f -perm 0777 -print
+search for the directory with the name aa in the current folder,find . -type d -name aa
+"search for the file "".user.log"" in a folder",find /nfs/office -name .user.log -print
+"search for the file ""foobar.txt"" in the folder ""/home/mywebsite""","find /home/mywebsite -type f -name ""foobar.txt"""
+"Search for files/directories that are readable for everybody, have at least one write bit set but are not executable for anybody",find . -perm -444 -perm /222 ! -perm /111
+Search for files/directories with the case insensitive pattern anaconda.* in var/log directory and create an archive (somefile.tar) of all the files found ensuring white space safety,find var/log -print0 -iname 'anaconda.*' | tar -cvf somefile.tar -T -
+search for the file foo in the current folder and display a long listing of it in sorted order of modification date,find . -name foo | xargs ls -tl
+search for files having python in filename,find / -iname '*python*'
+search for files having python in filename,find / -name '*python*'
+search for files in current folder using name patterns,"find . -name ""S1A*1S*SAFE"""
+"Search for files in the current user's home directory and below for files that have not been accessed for more than 100 days and ask the user for permission to delete each file, one by one.",find ~/ -atime +100 -exec rm -i {} \;
+"search for files that are readable for everybody, have at least on write bit set but are not executable for anybody",find . -perm -444 -perm /222 ! -perm /111
+"search for files that are readable for everybody, have at least on write bit set but are not executable for anybody",find . -perm -a+r -perm /a+w ! -perm /a+x
+Search for the literal string 'v$process' in all files under current directory,find . -print|xargs grep v\$process
+Search for the string 'foo' in *.html files under /usr/src/linux directory,"grep foo `find /usr/src/linux -name ""*.html""`"
+Search for the string 'git' in all the files under current directory tree without traversing into '.git' folder and excluding files that have 'git' in their names,find . -path ./.git -prune -o -not -name '*git*' -print |grep git
+"search for the word ""nutshell"" or ""Nutshell"" in all the files in the folder book",find /book -print | xargs grep '[Nn] utshell'
+search for the word echo all the bash files(files ending with .bash) in the current folder,"find . -name ""*.bash"" |xargs grep ""echo"""
+search for the word foo in all the js files in the current folder,"find . -name ""*.js"" -exec grep -iH foo {} \;"
+search for the word foo in all the js files in the current folder,"grep -iH foo `find . -name ""*.js""`"
+"Search my_folder recursively for text files containing ""needle text""","find my_folder -type f -exec grep -l ""needle text"" {} \; -exec file {} \; | grep text"
+Search non-recursively directory tree `MyApp.app' for directories whose name is 'Headers' and delete them in an optimized way,find MyApp.app -name Headers -type d -prune -exec rm -rf {} +
+"Search the regular files of the current directory tree for string ""foo""","find . -type f -exec grep ""foo"" '{}' \;"
+"Search the regular files of the current directory tree for string ""whatever""",find . -type f -exec grep -H whatever {} \;
+"Search the regular files of the current directory tree for string ""whatever""",find . -type f | xargs -L 100 grep whatever
+"Search the regular files of the current directory tree for string ""whatever""",find . -type f | xargs grep whatever
+Search the system for files and directories owned by group `managers',find / -group managers -print
+Set 644 permission to all regular files under /home/my/special/folder directory,chmod 644 `find /home/my/special/folder -type f`
+Set the modification timestamp of file 'filename' to specified date/time.,"touch -m --date=""Wed Jun 12 14:00:00 IDT 2013"" filename"
+"Set the shell prompt to ""host:pwd>""",PS1=`hostname`':\W> '
+"Set trace prompt to print seconds, nnoseconds, script name, and line number","PS4='+$(date ""+%s:%N"") %N:%i> '"
+"Setup a local SSH tunnel from port 1234 to ""remote2"" port 22 via connection to ""remote1"" as ""user1"" on port 45678",ssh -L 1234:remote2:22 -p 45678 user1@remote1
+"show all the files in the current folder which has the word ""ITM""",find . -name ‘*ITM*’
+"Show current date in ""%Y-%m-%d"" format","date ""+%Y-%m-%d"""
+Show the list of directories in the /mnt/raid directory tree,find /mnt/raid -type d -print
+"Silently read a single character from standard input into variable ""REPLY"" without backslash escapes, with a timeout of 5 seconds, and using the prompt $'Press any key or wait 5 seconds to continue...\n'",read -rsp $'Press any key or wait 5 seconds to continue...\n' -n 1 -t 5
+"Silently read a single character into variable ""REPLY""",read -n1 -s
+simulate a full login of user builder,su -l builder
+Sort content of files 'file1' and 'file2' by second of dot-separated fields.,cat file1 file2 |sort -t. -k 2.1
+"Split ""abc.txt"" into files with at most 1500000000 bytes each and use prefix ""abc""",split --bytes=1500000000 abc.txt abc
+"Split ""file"" into 10 files of about equal size without splitting lines",split -n l/10 file
+"Split the contents of ""file1 file2 ... file40000"" into 1445 files in a round robin fashion with prefix ""outputprefix"" and numeric suffixes",cat file1 file2 ... file40000 | split -n r/1445 -d - outputprefix
+SSH into $1 with login name 'pete',"ssh ""$1"" -l pete"
+"SSH with trusted X11 forwarding into ""user@remoteToRemote_IP"" from SSH connection ""user@remote_IP""",ssh -XY -t user@remote_IP 'ssh -XY -t user@remoteToRemote_IP'
+Start program 'scriptname' with an empty environment.,env - scriptname
+"Unzip and untar ""tarball.tar.gz""",zcat tarball.tar.gz | tar x
+Update the history file in the current session,history -w
+Update the timestamp of '/tmp/$$' to the current month and day,touch -t `date +%m%d0000` /tmp/$$
+"Variable PID contains a process ID, send SIGTERM to this process if it exists.",kill $PID
+Verbosely compresses all files on second and third depth level keeping original files in place.,bzip2 -kv */*
+Verbosely compresses all files on seventh and eighth depth level keeping original files in place.,bzip2 -kv */*/*/*/*/*/*/*
